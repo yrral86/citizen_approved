@@ -8,7 +8,6 @@ user 'citizen_approved' do
 end
 
 # dependencies
-include_recipe 'build-essential'
 package 'git'
 package 'libmysqlclient-dev'
 
