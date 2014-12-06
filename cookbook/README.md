@@ -1,4 +1,4 @@
-Installs hackathon
+Installs citizen_approved
 ---
 
 1. ```bundle install```
@@ -7,7 +7,7 @@ Installs hackathon
 ```
 rm -rf cookbooks && \
 bundle exec berks vendor cookbooks && \
-bundle exec knife zero bootstrap 54.69.152.178 -N citizen_approved-dev01 -r 'hackathon::all' -x root -E development -c knife.rb
+bundle exec knife zero bootstrap 54.69.152.178 -N citizen_approved-dev01 -r 'citizen_approved::all' -x root -E development -c knife.rb
 git commit -m 'update nodes/clients' nodes clients
 ```
 

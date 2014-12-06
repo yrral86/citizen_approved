@@ -1,6 +1,6 @@
 require 'minitest/spec'
 
-describe_recipe 'hackathon::app' do
+describe_recipe 'citizen_approved::app' do
   include Minitest::Chef::Assertions
   include Minitest::Chef::Context
   include Minitest::Chef::Resources

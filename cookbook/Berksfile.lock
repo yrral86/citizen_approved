@@ -11,7 +11,7 @@ DEPENDENCIES
     git: git://github.com/opscode-cookbooks/database.git
     revision: 1093adf87037162e73603e847e9d606ddec882d3
     tag: v2.3.0
-  hackathon
+  citizen_approved
     path: .
     metadata: true
   minitest-handler
@@ -45,7 +45,7 @@ GRAPH
     mysql-chef_gem (>= 0.0.0)
     postgresql (>= 1.0.0)
     xfs (>= 0.0.0)
-  hackathon (0.1.1)
+  citizen_approved (0.1.1)
     apt (>= 0.0.0)
     build-essential (>= 0.0.0)
     database (>= 0.0.0)

@@ -1,8 +1,8 @@
 #
-# Cookbook Name:: hackathon
+# Cookbook Name:: citizen_approved
 # Recipe:: default
 #
-# Copyright 2014, hackathon
+# Copyright 2014, citizen_approved
 #
 # All rights reserved - Do Not Redistribute
 #
