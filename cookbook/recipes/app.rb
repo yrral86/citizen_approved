@@ -53,8 +53,8 @@ deploy 'citizen_approved' do
       mysql_master.save
     end
 
-    template 'config.yml' do
-      path "#{release_path}/db/config.yml"
+    template 'database.yml' do
+      path "#{release_path}/config/database.yml"
       owner 'citizen_approved'
       group 'citizen_approved'
       variables({
