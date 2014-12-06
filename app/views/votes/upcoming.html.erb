@@ -3,10 +3,11 @@
 <% @voteless.each do |bill| %>
 <div class="poll">
   <div class="bill_title">
-    <%= bill.title %>
+    <%= content_tag :h4, "#{bill.body} Bill #{bill.number}:" %>
+    <%= content_tag :h4, bill.title %>
   </div>
   <div class="bill_overview">
-    <%= content_tag :h4, bill.overview %>
+    <%= bill.overview %>
   </div>
   <div class="bill_full_text_url">
     <%= link_to "Full Text", bill.full_text_url %>
@@ -45,6 +46,7 @@
 <% vote = bill.get_vote(current_voter.id) %>
 <div class="poll">
   <div class="bill_title">
+    <%= content_tag :h4, "#{bill.body} Bill #{bill.number}:" %>
     <%= content_tag :h4, bill.title %>
   </div>
   <div class="bill_overview">

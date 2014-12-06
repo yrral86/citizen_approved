@@ -3,4 +3,8 @@ class Bill < ActiveRecord::Base
     Vote.where(bill_id: self.id,
                voter_id: voter_id).first
   end
+
+  def body
+    self.senate ? "Senate" : "House"
+  end
 end

@@ -15,9 +15,12 @@ class District < ActiveRecord::Base
     collection
   end
 
+  def body
+    self.senate ? "Senate" : "House"
+  end
+
   def option_name
-    body = 'Senate'
-    body = 'House' unless self.senate
-    "#{state_code}- #{body} District #{number} (#{name})"
+    self.senate ? "#{state_code}- #{body} Seat #{number} (#{name})"
+    : "#{state_code}- #{body} District #{number} (#{name})"
   end
 end
