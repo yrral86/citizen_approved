@@ -11,9 +11,6 @@ end
 package 'git'
 package 'libmysqlclient-dev'
 
-# for development only
-package 'libsqlite3-dev' if node.chef_environment == 'development'
-
 # set up ruby/rvm
 ### this is not working anyway for some reason
 #node.set['rvm']['installs'] = {
