@@ -1,2 +1,60 @@
-<h1>Votes#upcoming</h1>
-<p>Find me in app/views/votes/upcoming.html.erb</p>
+<h1>Upcoming Votes</h1>
+<%= content_tag(:h3, 'New Bills') if @voteless.size > 0 %>
+<% @voteless.each do |bill| %>
+<div class="poll">
+  <div class="bill_title">
+    <%= bill.title %>
+  </div>
+  <div class="bill_overview">
+    <%= bill.overview %>
+  </div>
+  <div class="bill_full_text_url">
+    <%= link_to "Full Text", bill.full_text_url %>
+  </div>
+  <div class="poll_options">
+    <%= form_for(Vote.new, url: "/votes/submit", method: "post") do |f| %>
+    <div class="poll_option">
+      <%= f.radio_button(:choice, :yes, onchange: "submit_vote(#{bill.id},'yes');") %>
+      <%= f.label "Yes" %><br />
+      <%= f.radio_button(:choice, :no, onchange: "submit_vote(#{bill.id},'no');") %>
+      <%= f.label "No" %><br />
+      <%= f.radio_button(:choice, :delegate,
+	  onchange: "submit_vote(#{bill.id},'delegate');") %>
+      <%= f.label "Delegate" %>
+    </div>
+    <% end %>
+  </div>
+</div>
+<% end %>
+<%= content_tag(:h3, 'Change Vote') if @voted.size > 0 %>
+<% @voted.each do |bill| %>
+<div class="poll">
+  <div class="bill_title">
+    <%= bill.title %>
+  </div>
+  <div class="bill_overview">
+    <%= bill.overview %>
+  </div>
+  <div class="bill_full_text_url">
+    <%= link_to "Full Text", bill.full_text_url %>
+  </div>
+  <div class="poll_options">
+    <%= form_for(Vote.new, url: "/votes/submit", method: "post") do |f| %>
+    <div class="poll_option">
+      <%= f.radio_button(:choice, :yes,
+	  checked: bill.get_vote(current_voter.id).choice == 'yes',
+	  onchange: "submit_vote(#{bill.id},'yes');") %>
+      <%= f.label "Yes" %><br />
+      <%= f.radio_button(:choice, :no,
+	  checked: bill.get_vote(current_voter.id).choice == 'no',
+	  onchange: "submit_vote(#{bill.id},'no');") %>
+      <%= f.label "No" %><br />
+      <%= f.radio_button(:choice, :delegate,
+	  checked: bill.get_vote(current_voter.id).choice == 'delegate',
+	  onchange: "submit_vote(#{bill.id},'delegate');") %>
+      <%= f.label "Delegate" %>
+    </div>
+    <% end %>
+  </div>
+</div>
+<% end %>
