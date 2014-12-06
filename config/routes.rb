@@ -1,5 +1,4 @@
 Rails.application.routes.draw do
-  devise_for :users
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
@@ -55,6 +54,6 @@ Rails.application.routes.draw do
   #     resources :products
   #   end
 
-  devise_for :voters, controllers: { sessions: 'voters/sessions' }
-  devise_for :legislators, controllers: { sessions: 'legislators/sessions' }
+  devise_for :voters
+  devise_for :legislators
 end
