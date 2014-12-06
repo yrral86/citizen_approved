@@ -11,7 +11,17 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141206151003) do
+ActiveRecord::Schema.define(version: 20141206151251) do
+
+  create_table "bills", force: true do |t|
+    t.string   "title",         limit: 255
+    t.string   "overview",      limit: 255
+    t.string   "full_text_url", limit: 255
+    t.integer  "number",        limit: 4
+    t.boolean  "senate",        limit: 1
+    t.datetime "created_at",                null: false
+    t.datetime "updated_at",                null: false
+  end
 
   create_table "districts", force: true do |t|
     t.boolean  "senate",     limit: 1
