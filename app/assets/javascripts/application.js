@@ -14,3 +14,12 @@
 //= require jquery_ujs
 //= require turbolinks
 //= require_tree .
+
+function update_district_options() {
+    var code = $('#state_code').val();
+    var district_options = $('#district_options');
+    $.ajax('/districts/options/' + code).done(
+	       function(result) {
+		   district_options.replaceWith(result);
+	       });
+}
