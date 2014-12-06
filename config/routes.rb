@@ -54,4 +54,7 @@ Rails.application.routes.draw do
   #     # (app/controllers/admin/products_controller.rb)
   #     resources :products
   #   end
+
+  devise_for :voters, controllers: { sessions: 'voters/sessions' }
+  devise_for :legislators, controllers: { sessions: 'legislators/sessions' }
 end
