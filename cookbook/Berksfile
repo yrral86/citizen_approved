@@ -1,0 +1,14 @@
+source 'https://api.berkshelf.com'
+
+metadata
+
+cookbook 'apt', github: 'opscode-cookbooks/apt', tag: 'v2.6.0'
+cookbook 'build-essential', github: 'opscode-cookbooks/build-essential', tag: 'v2.1.2'
+cookbook 'database', github: 'opscode-cookbooks/database', tag: 'v2.3.0'
+cookbook 'mysql', github: 'opscode-cookbooks/mysql', tag: 'v5.6.0'
+cookbook 'openssl', github: 'opscode-cookbooks/openssl', tag: 'v2.0.0'
+cookbook 'rvm', github: 'fnichol/chef-rvm', tag: 'v0.9.2'
+
+group :integration do
+  cookbook 'minitest-handler', github: 'btm/minitest-handler-cookbook'
+end

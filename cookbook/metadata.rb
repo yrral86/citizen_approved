@@ -1,0 +1,22 @@
+name 'hackathon'
+maintainer 'hackathon'
+maintainer_email 'hackathon@hackathon'
+license 'Apache 2.0'
+description 'Installs/Configures hackathon'
+version '0.1.1'
+
+supports 'ubuntu'
+
+depends 'apt'
+depends 'build-essential'
+depends 'database'
+depends 'mysql'
+depends 'nginx'
+depends 'openssl'
+depends 'rvm'
+
+recipe 'hackathon::cluster', 'Installs a full hackathon cluster'
+recipe 'hackathon::all', 'Installs a full stack hackathon server'
+recipe 'hackathon::app', 'Installs a hackathon app server'
+recipe 'hackathon::default', 'Base recipe to be applied on all servers'
+recipe 'hackathon::mysql_master', 'Installs a mysql master'
