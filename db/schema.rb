@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141206151251) do
+ActiveRecord::Schema.define(version: 20141206151916) do
 
   create_table "bills", force: true do |t|
     t.string   "title",         limit: 255
@@ -55,5 +55,13 @@ ActiveRecord::Schema.define(version: 20141206151251) do
   add_index "users", ["house_district_id"], name: "index_users_on_house_district_id", using: :btree
   add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
   add_index "users", ["senate_district_id"], name: "index_users_on_senate_district_id", using: :btree
+
+  create_table "votes", force: true do |t|
+    t.integer  "voter_id",   limit: 4
+    t.integer  "bill_id",    limit: 4
+    t.string   "choice",     limit: 255
+    t.datetime "created_at",             null: false
+    t.datetime "updated_at",             null: false
+  end
 
 end
