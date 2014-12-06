@@ -21,6 +21,31 @@
     <%= f.password_field :password_confirmation, autocomplete: "off" %>
   </div>
 
+  <div class="field">
+    <%= f.label "Voter Identification Number" %><br />
+    <%= f.text_field :voter_id %>
+  </div>
+
+  <div class="field">
+    <%= f.label "State" %><br />
+    <%= select_tag(:state_code, options_for_select(states_helper), onchange: 'update_district_options();') %>
+  </div>
+
+  <div class="field">
+    <%= f.label "Voter Identification Number" %><br />
+    <%= f.text_field :voter_id %>
+  </div>
+
+  <div class="field">
+    <%= f.label "Senate District" %><br />
+    <%= select(resource, :senate_district_id, options_helper(District.senate_districts)) %>
+  </div>
+
+  <div class="field">
+    <%= f.label "House District" %><br />
+    <%= select(resource, :house_district_id, options_helper(District.house_districts)) %>
+  </div>
+
   <div class="actions">
     <%= f.submit "Sign up" %>
   </div>
