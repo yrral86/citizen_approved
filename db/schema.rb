@@ -11,7 +11,16 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141206144600) do
+ActiveRecord::Schema.define(version: 20141206151003) do
+
+  create_table "districts", force: true do |t|
+    t.boolean  "senate",     limit: 1
+    t.string   "state_code", limit: 255
+    t.integer  "number",     limit: 4
+    t.string   "name",       limit: 255
+    t.datetime "created_at",             null: false
+    t.datetime "updated_at",             null: false
+  end
 
   create_table "users", force: true do |t|
     t.string   "email",                  limit: 255, default: "", null: false

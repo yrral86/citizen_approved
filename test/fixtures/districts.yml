@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  senate: false
+  state_code: MyString
+  number: 1
+  name: MyString
+
+two:
+  senate: false
+  state_code: MyString
+  number: 1
+  name: MyString
