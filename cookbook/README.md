@@ -13,7 +13,8 @@ git commit -m 'update nodes/clients' nodes clients
 
 
 to deploy a cluster on digital ocean, set up tugboat gem and configure it to your liking, then run:
-```rm -rf cookbooks/ && \
+```
+rm -rf cookbooks/ && \
 bundle exec berks vendor cookbooks && \
 bundle exec chef-client -c knife.rb -z recipes/cluster.rb
 git commit -m 'update nodes/clients' nodes clients
