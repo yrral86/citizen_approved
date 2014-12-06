@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141206141234) do
+ActiveRecord::Schema.define(version: 20141206144600) do
 
   create_table "users", force: true do |t|
     t.string   "email",                  limit: 255, default: "", null: false
@@ -27,9 +27,14 @@ ActiveRecord::Schema.define(version: 20141206141234) do
     t.string   "type",                   limit: 255
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "house_district_id",      limit: 4
+    t.integer  "senate_district_id",     limit: 4
+    t.string   "voter_id",               limit: 255
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
+  add_index "users", ["house_district_id"], name: "index_users_on_house_district_id", using: :btree
   add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
+  add_index "users", ["senate_district_id"], name: "index_users_on_senate_district_id", using: :btree
 
 end
