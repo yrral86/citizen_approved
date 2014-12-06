@@ -28,7 +28,7 @@
 
   <div class="field">
     <%= f.label "State" %><br />
-    <%= select_tag(:state_code, options_for_select(states_helper), onchange: 'update_district_options();') %>
+    <%= select_tag(:state_code, options_for_select(states_helper), onchange: 'update_district_options();', include_blank: true) %>
   </div>
 
   <div class="field">
