@@ -41,12 +41,6 @@ deploy 'citizen_approved' do
   user 'citizen_approved'
   environment "RAILS_ENV" => node.chef_environment
   before_migrate do
-    execute "cp -a /opt/citizen_approved/current/vendor ." do
-      cwd release_path
-      only_if 'stat /opt/citizen_approved/current/vendor'
-      notifies :run, 'execute[bundle install]', :immediately
-    end
-
    rvm_shell "bundle install" do
      ruby_string node['citizen_approved']['app']['ruby_version']
      cwd release_path
@@ -72,19 +66,24 @@ deploy 'citizen_approved' do
       })
     end
 
-    unless mysql_master['citizen_approved']['db']['seeded'] == true
-     rvm_shell "migrate and seed db" do
-       ruby_string node['citizen_approved']['app']['ruby_version']
-       cwd release_path
-       user 'citizen_approved'
-       group 'citizen_approved'
- 
-       code %{
-         bundle exec rake db:migrate && bundle exec rake db:seed
-       }
-     end 
-      mysql_master.set_unless['citizen_approved']['db']['seeded'] = true
-      mysql_master.save
+    if mysql_master['citizen_approved']['db']['seeded'] == true
+      file '/opt/citizen_approved/db.seeded' do
+        content 'true'
+      end
+    end
+
+    unless ::File.exists?('/opt/citizen_approved/db.seeded')
+      rvm_shell "migrate and seed db" do
+        ruby_string node['citizen_approved']['app']['ruby_version']
+        cwd release_path
+        user 'citizen_approved'
+        group 'citizen_approved'
+        code %{
+          bundle exec rake db:migrate && bundle exec rake db:seed && touch db.seeded
+        }
+      end 
+     mysql_master.set_unless['citizen_approved']['db']['seeded'] = true
+     mysql_master.save
     end
 
   end
