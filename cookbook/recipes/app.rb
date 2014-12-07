@@ -12,6 +12,7 @@ package 'git'
 package 'libmysqlclient-dev'
 
 # set up ruby/rvm
+execute 'gpg --keyserver hkp://keys.gnupg.net --recv-keys D39DC0E3'
 node.set['rvm']['installs'] = {
   'citizen_approved' => {
     'install_rubies' => true,
