@@ -27,8 +27,7 @@ DEPENDENCIES
     tag: v2.0.0
   rvm
     git: git://github.com/fnichol/chef-rvm.git
-    revision: 60fe2519582a3ec13b767f2662201b61bd980f13
-    tag: v0.9.2
+    revision: 8a877e9b497f8fb06dfe6f5975561331b3924243
 
 GRAPH
   apt (2.6.0)
@@ -80,7 +79,7 @@ GRAPH
     build-essential (>= 0.0.0)
     yum (~> 3.0)
     yum-epel (>= 0.0.0)
-  rvm (0.9.2)
+  rvm (0.10.1)
     chef_gem (>= 0.0.0)
     java (>= 0.0.0)
   xfs (1.1.0)
