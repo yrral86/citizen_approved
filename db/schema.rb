@@ -11,17 +11,22 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141206151916) do
+ActiveRecord::Schema.define(version: 20141207050231) do
 
   create_table "bills", force: true do |t|
-    t.string   "title",         limit: 255
-    t.string   "overview",      limit: 255
-    t.string   "full_text_url", limit: 255
-    t.integer  "number",        limit: 4
-    t.boolean  "senate",        limit: 1
-    t.datetime "created_at",                null: false
-    t.datetime "updated_at",                null: false
+    t.string   "title",        limit: 255
+    t.integer  "number",       limit: 4
+    t.boolean  "senate",       limit: 1
+    t.datetime "created_at",                 null: false
+    t.datetime "updated_at",                 null: false
+    t.integer  "govtrack_id",  limit: 4
+    t.string   "govtrack_url", limit: 255
+    t.string   "thomas_url",   limit: 255
+    t.integer  "congress",     limit: 4
+    t.text     "summary",      limit: 65535
   end
+
+  add_index "bills", ["govtrack_id"], name: "index_bills_on_govtrack_id", unique: true, using: :btree
 
   create_table "districts", force: true do |t|
     t.boolean  "senate",     limit: 1
