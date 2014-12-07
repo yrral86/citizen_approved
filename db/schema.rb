@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141207172714) do
+ActiveRecord::Schema.define(version: 20141207223253) do
 
   create_table "bills", force: true do |t|
     t.string   "title",        limit: 255
@@ -65,12 +65,12 @@ ActiveRecord::Schema.define(version: 20141207172714) do
     t.integer  "house_district_id",      limit: 4
     t.integer  "senate_district_id",     limit: 4
     t.string   "voter_id",               limit: 255
-    t.string   "name",                   limit: 255,                 null: false
-    t.string   "address",                limit: 255,                 null: false
+    t.string   "name",                   limit: 255
+    t.string   "address",                limit: 255
     t.string   "address2",               limit: 255
-    t.string   "city",                   limit: 255,                 null: false
-    t.string   "state_code",             limit: 255,                 null: false
-    t.string   "zip",                    limit: 255,                 null: false
+    t.string   "city",                   limit: 255
+    t.string   "state_code",             limit: 255
+    t.string   "zip",                    limit: 255
     t.boolean  "verified",               limit: 1,   default: false, null: false
   end
 
