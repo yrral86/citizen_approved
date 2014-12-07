@@ -5,10 +5,10 @@ Installs citizen_approved
 2. add your ssh key on the koding server to /root/.ssh/authorized_keys
 3. to deploy, run:
 ```
-target_ip=IP_ADDRESS
+target=IP_ADDRESS
 rm -rf cookbooks && \
 bundle exec berks vendor cookbooks && \
-bundle exec knife zero bootstrap $target -N citizen_approved-dev01 -r 'citizen_approved::all' -x root -E development -c knife.rb
+bundle exec knife zero bootstrap $target_ip -N citizen_approved-dev01 -r 'citizen_approved::all' -x root -E development -c knife.rb
 ```
 4. be sure to save the created files in the cookbook/nodes/ and cookbooks/clients/ directories.
 5. to re-deploy (after a succesful bootstrap):
