@@ -54,7 +54,7 @@ deploy 'citizen_approved' do
     end
 
     unless mysql_master['citizen_approved']['db']['seeded'] == true
-      execute "bundle exec rake db:schema:load" do
+      execute "bundle exec rake db:migrate && bundle exec rake db:seed" do
         cwd release_path
         user 'citizen_approved'
       end
