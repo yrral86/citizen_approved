@@ -1,3 +1,4 @@
+#find the mysql_master node
 mysql_master = search(:node, "chef_environment:#{node.chef_environment}"' AND run_list:recipe\[citizen_approved\:\:mysql_master\]').first || node
 
 group 'citizen_approved'
@@ -12,7 +13,10 @@ package 'git'
 package 'libmysqlclient-dev'
 
 # set up ruby/rvm
-execute 'gpg --keyserver hkp://keys.gnupg.net --recv-keys D39DC0E3'
+execute 'gpg --keyserver hkp://keys.gnupg.net --recv-keys D39DC0E3' do
+  user 'citizen_approved'
+  not_if 'gpg --list-keys | grep D39DC0E3'
+end
 node.set['rvm']['installs'] = {
   'citizen_approved' => {
     'install_rubies' => true,
@@ -22,9 +26,11 @@ node.set['rvm']['installs'] = {
 }
 include_recipe 'rvm::user'
 
+#set up nginx/passenger
 include_recipe 'nginx'
 include_recipe 'nginx::passenger'
 
+#deploy citizen_approved
 deploy 'citizen_approved' do
   repo node['citizen_approved']['app']['repo']
   revision node['citizen_approved']['app']['revision']
