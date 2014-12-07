@@ -23,8 +23,8 @@ end
 node.set['rvm']['installs'] = {
   'citizen_approved' => {
     'install_rubies' => true,
-    'default_ruby' => '1.9.3-p547',
-    'rubies' => ['1.9.3-p547', '2.0.0']
+    'default_ruby' => node['citizen_approved']['app']['ruby_version'],
+    'rubies' => [node['citizen_approved']['app']['ruby_version']]
   }
 }
 include_recipe 'rvm::user'
@@ -47,11 +47,16 @@ deploy 'citizen_approved' do
       notifies :run, 'execute[bundle install]', :immediately
     end
 
-    execute 'bundle install' do
-      command 'bundle install --path vendor/bundle --without=cookbook'
-      cwd release_path
-      user 'citizen_approved'
-    end
+   rvm_shell "Bundle install and assets precompile" do
+     ruby_string node['citizen_approved']['app']['ruby_version']
+     cwd release_path
+     user 'citizen_approved'
+     group 'citizen_approved'
+ 
+     code %{
+       bundle install --path vendor/bundle
+     }
+   end 
 
     template 'database.yml' do
       path "#{release_path}/config/database.yml"
