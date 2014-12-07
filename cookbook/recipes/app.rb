@@ -41,14 +41,8 @@ deploy 'citizen_approved' do
   user 'citizen_approved'
   environment "RACK_ENV" => node.chef_environment
   before_migrate do
-    execute "cp -a /opt/citizen_approved/current/vendor ." do
-      cwd release_path
-      only_if 'stat /opt/citizen_approved/current/vendor'
-      notifies :run, 'execute[bundle install]', :immediately
-    end
-
     execute 'bundle install' do
-      command 'bundle install --path vendor/bundle --without=cookbook'
+      command 'bundle install --without=cookbook'
       cwd release_path
       user 'citizen_approved'
     end
