@@ -30,6 +30,7 @@ node.set['rvm']['installs'] = {
 include_recipe 'rvm::user'
 
 #set up nginx/passenger
+#node.set['nginx']['passenger']['gem_binary'] = '/opt/citizen_approved/.rvm/gems/ruby-#{['citizen_approved']['app']['ruby_version']}@global/bin/gem'
 include_recipe 'nginx'
 include_recipe 'nginx::passenger'
 
