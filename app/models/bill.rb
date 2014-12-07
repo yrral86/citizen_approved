@@ -7,4 +7,8 @@ class Bill < ActiveRecord::Base
   def body
     self.senate ? "Senate" : "House"
   end
+
+  def self.current
+    where("current = ?", true)
+  end
 end
