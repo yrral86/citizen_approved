@@ -6,13 +6,25 @@
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 
+require 'open-uri'
+
+yaml = open("https://www.govtrack.us/data/congress-legislators/legislators-current.yaml") {|f| YAML.load(f.read)}
+
+puts "total legislators: #{yaml.size}"
+
+legislators = []
+yaml.each do |l|
+  legislators << [l['name']['official_full'], l['terms'][0]['state'], l['terms'][0]['type'],
+                  l['terms'][0]['district'], l['terms'][0]['state_rank']]
+end
+
 districts = ['AL-7',
              'AK-1',
              'AZ-9',
              'AR-4',
              'CA-53',
              'CO-7',
-             'CN-4',
+             'CT-4',
              'DE-1',
              'FL-27',
              'GA-14',
@@ -24,7 +36,7 @@ districts = ['AL-7',
              'KS-4',
              'KY-6',
              'LA-6',
-             'MN-2',
+             'ME-2',
              'MD-8',
              'MA-9',
              'MI-14',
@@ -58,16 +70,43 @@ districts = ['AL-7',
              'WY-1'
             ]
 
-District.destroy_all
+#District.destroy_all
+
+total_s = 0
+total_r = 0
+
+unused_indices = (0..450).to_a
 
 districts.each do |d|
   (state, dnum) = d.split('-')
-  (1..dnum.to_i).each do |n|
-    District.create(senate: false, state_code: state,
-                    number: n, name: "#{state}-#{n.to_s}")
+  leg = legislators.select do |l|
+    if l[1].downcase == state.downcase
+      unused_indices.delete(legislators.index(l))
+      true
+    else
+      false
+    end
   end
-  (1..2).each do |n|
-    District.create(senate: true, state_code: state,
-                    number: n, name: "#{state} Senate Seat #{n}")
+  senators = leg.select do |l|
+    l[2] == "sen"
   end
+  reps = leg.select do |l|
+    l[2] == "rep"
+  end
+  total_s += senators.size
+  total_r += reps.size
+  puts "#{state}: senators: #{senators.size} reps: #{reps.size}"
+#  (1..dnum.to_i).each do |n|
+#    District.create(senate: false, state_code: state,
+#                    number: n, name: "#{state}-#{n.to_s}")
+#  end
+#  (1..2).each do |n|
+#    District.create(senate: true, state_code: state,
+#                    number: n, name: "#{state} Senate Seat #{n}")
+#  end
+end
+
+puts "total: senators: #{total_s} reps: #{total_r}"
+unused_indices.each do |i|
+  puts legislators[i]
 end
