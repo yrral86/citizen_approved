@@ -16,7 +16,7 @@
 //= require_tree .
 
 function update_district_options() {
-    var code = $('#state_code').val();
+    var code = $('#voter_state_code').val();
     var district_options = $('#district_options');
     $.ajax('/districts/options/' + code).done(
 	       function(result) {

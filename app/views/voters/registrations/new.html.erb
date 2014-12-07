@@ -22,14 +22,34 @@
   </div>
 
   <div class="field">
+    <%= f.label "Name" %><br />
+    <%= f.text_field :name %>
+  </div>
+
+  <div class="field">
     <%= f.label "Voter Identification Number" %><br />
     <%= f.text_field :voter_id %>
   </div>
 
   <div class="field">
+    <%= f.label "Address" %><br />
+    <%= f.text_field :address %><br />
+    <%= f.text_field :address2 %>
+  </div>
+
+  <div class="field">
+    <%= f.label "City" %><br />
+    <%= f.text_field :city %>
+  </div>
+
+  <div class="field">
     <%= f.label "State" %><br />
-    <%= select_tag(:state_code, options_for_select(states_helper),
-	onchange: 'update_district_options();', include_blank: true) %>
+    <%= f.select(:state_code, options_for_select(states_helper), {include_blank: true}, {onchange: 'update_district_options();'}) %>
+  </div>
+
+  <div class="field">
+    <%= f.label "Zip Code" %><br />
+    <%= f.text_field :zip %>
   </div>
 
   <%= render partial: 'districts/options', locals: {state_code: nil} %>
