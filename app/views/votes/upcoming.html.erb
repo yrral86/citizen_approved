@@ -6,11 +6,12 @@
     <%= content_tag :h4, "#{bill.body} Bill #{bill.number}:" %>
     <%= content_tag :h4, bill.title %>
   </div>
-  <div class="bill_overview">
-    <%= bill.overview %>
+  <div class="bill_summary">
+    <%= bill.summary %>
   </div>
-  <div class="bill_full_text_url">
-    <%= link_to "Full Text", bill.full_text_url %>
+  <div class="bill_urls">
+    <%= link_to "Read Bill on GovTrack", bill.govtrack_url %>
+    <%= link_to "Read Bill on Thomas", bill.thomas_url %>
   </div>
   <div class="poll_options">
     <%= form_for(Vote.new, url: "/votes/submit", method: "post") do |f| %>
@@ -49,11 +50,12 @@
     <%= content_tag :h4, "#{bill.body} Bill #{bill.number}:" %>
     <%= content_tag :h4, bill.title %>
   </div>
-  <div class="bill_overview">
-    <%= bill.overview %>
+  <div class="bill_summary">
+    <%= bill.summary %>
   </div>
-  <div class="bill_full_text_url">
-    <%= link_to "Full Text", bill.full_text_url %>
+  <div class="bill_urls">
+    <%= link_to "Read Bill on GovTrack", bill.govtrack_url %>
+    <%= link_to "Read Bill on Thomas", bill.thomas_url %>
   </div>
   <div class="poll_options">
     <%= form_for(Vote.new, url: "/votes/submit", method: "post") do |f| %>
