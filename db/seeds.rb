@@ -10,8 +10,6 @@ require 'open-uri'
 
 yaml = open("https://www.govtrack.us/data/congress-legislators/legislators-current.yaml") {|f| YAML.load(f.read)}
 
-puts "total legislators: #{yaml.size}"
-
 legislators = []
 yaml.each do |l|
   legislators << [l['name']['official_full'], l['terms'][-1]['state'],
@@ -68,25 +66,21 @@ districts = ['AL-7',
              'WA-10',
              'WV-3',
              'WI-8',
-             'WY-1'
+             'WY-1',
+             'GU-1',
+             'VI-1',
+             'AS-1',
+             'DC-1',
+             'PR-1',
+             'MP-1'
             ]
 
-#District.destroy_all
-
-total_s = 0
-total_r = 0
-
-unused_indices = (0..450).to_a
+District.destroy_all
 
 districts.each do |d|
   (state, dnum) = d.split('-')
   leg = legislators.select do |l|
-    if l[1].downcase == state.downcase
-      unused_indices.delete(legislators.index(l))
-      true
-    else
-      false
-    end
+    l[1] == state
   end
   senators = leg.select do |l|
     l[2] == "sen"
@@ -94,20 +88,23 @@ districts.each do |d|
   reps = leg.select do |l|
     l[2] == "rep"
   end
-  total_s += senators.size
-  total_r += reps.size
-  puts "#{state}: senators: #{senators.size} reps: #{reps.size}"
-#  (1..dnum.to_i).each do |n|
-#    District.create(senate: false, state_code: state,
-#                    number: n, name: "#{state}-#{n.to_s}")
-#  end
-#  (1..2).each do |n|
-#    District.create(senate: true, state_code: state,
-#                    number: n, name: "#{state} Senate Seat #{n}")
-#  end
-end
 
-puts "total: senators: #{total_s} reps: #{total_r}"
-unused_indices.each do |i|
-  puts legislators[i]
+  if senators and senators.size > 0
+    i = 1
+    i = 2 if senators[0][4] == 'senior'
+    senators.each do |s|
+      District.create(senate: true, state_code: state,
+                      number: i, name: s[0])
+      if senators[0][4] == 'senior'
+        i = 1
+      else
+        i = 2
+      end
+    end
+  end
+
+  reps.each do |r|
+    District.create(senate: false, state_code: state,
+                    number: r[3], name: r[0])
+  end
 end
