@@ -1,3 +1,10 @@
 // Place all the styles related to the legislators controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+div.bill_consensus {
+  margin: 40px;
+  padding: 10px;
+  background-color: lightblue;
+  border-radius: 30px;
+}

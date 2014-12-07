@@ -1,2 +1,31 @@
 <h1>Legislators#home</h1>
-<p>Find me in app/views/legislators/home.html.erb</p>
+<% @bills.each do |b| %>
+<div class="bill_consensus">
+  <div class="bill_info">
+    <%= content_tag :h4, b.title %>
+    <%= b.summary %>
+  </div>
+  <div class="bill_urls">
+    <%= link_to "Read Bill on GovTrack", b.govtrack_url %>
+    <%= link_to "Read Bill on Thomas", b.thomas_url %>
+  </div>
+  <div class="bill_consensus_results">
+    <% total = b.vote_count(current_legislator.constituants) %>
+    <% support = b.vote_count(current_legislator.constituants, :for) %>
+    <% against = b.vote_count(current_legislator.constituants, :against) %>
+    <% delegate = b.vote_count(current_legislator.constituants, :delgate) %>
+    <div class="field">
+      Votes cast: <%= total = b.vote_count(current_legislator.constituants) %>
+    </div>
+    <div class="field">
+      For: <%= "#{support} (#{100*support/total}%)" %>
+    </div>
+    <div class="field">
+      Against: <%= "#{against} (#{100*against/total}%)" %>
+    </div>
+    <div class="field">
+      Delegate: <%= "#{delegate} (#{100*delegate/total}%)" %>
+    </div>
+  </div>
+</div>
+<% end %>
