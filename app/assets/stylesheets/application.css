@@ -13,3 +13,24 @@
  *= require_tree .
  *= require_self
  */
+
+div.content {
+    width: 80%;
+    margin: 0 auto;
+}
+
+header {
+    float: right;
+    margin: 50px;
+    padding: 20px;
+    background-color: lightblue;
+    border-radius: 10px;
+}
+
+header a {
+    margin: 10px;
+}
+
+div.field {
+    margin: 10px;
+}

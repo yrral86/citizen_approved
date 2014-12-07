@@ -1,0 +1,45 @@
+// Place all the styles related to the votes controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+div.poll {
+  text-align: center;
+  margin: 40px;
+  padding: 10px;
+  background-color: lightblue;
+  border-radius: 30px;
+}
+
+div.bill_title {
+  margin: 10px; 
+}
+
+div.bill_summary {
+  margin: 10px; 
+}
+
+div.bill_urls {
+  margin: 10px; 
+}
+
+div.poll_options {
+  margin: 10px;
+}
+
+div.poll_option {
+  margin: 10px;
+}
+
+input[type="radio"].poll_option+label {
+  padding: 5px;
+  border-radius: 10px;
+}
+
+input[type="radio"].poll_option {
+  display: none;
+}
+
+input[type="radio"].poll_option:checked+label {
+  background-color: darkblue;
+  color: white;
+}

@@ -7,8 +7,17 @@
   <%= csrf_meta_tags %>
 </head>
 <body>
-
+<header>
+  <% if voter_signed_in? %>
+  <%= link_to 'Logout', destroy_voter_session_path, method: :delete %>
+  <% else %>
+  <%= link_to 'Login', new_voter_session_path %>
+  <%= link_to 'Sign Up', new_voter_registration_path %>
+  <% end %>
+</header>
+<div class="content">
 <%= yield %>
+</div>
 
 </body>
 </html>
