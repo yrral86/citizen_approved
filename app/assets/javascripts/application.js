@@ -23,3 +23,12 @@ function update_district_options() {
 		   district_options.replaceWith(result);
 	       });
 }
+
+function submit_vote(bill_id, choice) {
+    $.ajax('/votes/submit', {
+	method: 'post',
+	data: {bill_id: bill_id,
+	       choice: choice}}).done(function() {
+		   location.reload(true);
+	       });
+}

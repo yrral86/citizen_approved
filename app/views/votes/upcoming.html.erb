@@ -1,0 +1,91 @@
+<h1>Upcoming Votes</h1>
+<%= content_tag(:h3, 'New Bills') if @voteless.size > 0 %>
+<% @voteless.each do |bill| %>
+<div class="poll">
+  <div class="bill_title">
+    <%= content_tag :h4, "#{bill.body} Bill #{bill.number}:" %>
+    <%= content_tag :h4, bill.title %>
+  </div>
+  <div class="bill_summary">
+    <%= bill.summary %>
+  </div>
+  <div class="bill_urls">
+    <%= link_to "Read Bill on GovTrack", bill.govtrack_url %>
+    <%= link_to "Read Bill on Thomas", bill.thomas_url %>
+  </div>
+  <div class="poll_options">
+    <%= form_for(Vote.new, url: "/votes/submit", method: "post") do |f| %>
+    <div class="poll_option">
+      <div class="poll_option">
+	<%= f.radio_button(:choice, :yes,
+	    id: "vote_choice_yes_#{bill.id}",
+	    class: 'poll_option',
+	    onchange: "submit_vote(#{bill.id},'yes');") %>
+	<%= f.label "choice_yes_#{bill.id}", "Yes", class: 'poll_option' %>
+      </div>
+      <div class="poll_option">
+	<%= f.radio_button(:choice, :no,
+	    id: "vote_choice_no_#{bill.id}",
+	    class: 'poll_option',
+	    onchange: "submit_vote(#{bill.id},'no');") %>
+	<%= f.label "choice_no_#{bill.id}", "No", class: 'poll_option' %>
+      </div>
+      <div class="poll_option">
+	<%= f.radio_button(:choice, :delegate,
+	    id: "vote_choice_delegate_#{bill.id}",
+	    class: 'poll_option',
+	    onchange: "submit_vote(#{bill.id},'delegate');") %>
+	<%= f.label "choice_delegate_#{bill.id}", "Delegate", class: 'poll_option' %>
+      </div>
+    </div>
+    <% end %>
+  </div>
+</div>
+<% end %>
+<%= content_tag(:h3, 'Change Vote') if @voted.size > 0 %>
+<% @voted.each do |bill| %>
+<% vote = bill.get_vote(current_voter.id) %>
+<div class="poll">
+  <div class="bill_title">
+    <%= content_tag :h4, "#{bill.body} Bill #{bill.number}:" %>
+    <%= content_tag :h4, bill.title %>
+  </div>
+  <div class="bill_summary">
+    <%= bill.summary %>
+  </div>
+  <div class="bill_urls">
+    <%= link_to "Read Bill on GovTrack", bill.govtrack_url %>
+    <%= link_to "Read Bill on Thomas", bill.thomas_url %>
+  </div>
+  <div class="poll_options">
+    <%= form_for(Vote.new, url: "/votes/submit", method: "post") do |f| %>
+    <div class="poll_options">
+      <div class="poll_option">
+	<%= f.radio_button(:choice, :yes,
+	    class: 'poll_option',
+	    checked: vote.choice == 'yes',
+	    id: "vote_choice_yes_#{bill.id}",
+	    onchange: "submit_vote(#{bill.id},'yes');") %>
+	<%= f.label "choice_yes_#{bill.id}", "Yes", class: 'poll_option' %>
+      </div>
+      <div class="poll_option">
+	<%= f.radio_button(:choice, :no,
+	    class: 'poll_option',
+	    checked: vote.choice == 'no',
+	    id: "vote_choice_no_#{bill.id}",
+	    onchange: "submit_vote(#{bill.id},'no');") %>
+	<%= f.label "choice_no_#{bill.id}", "No", class: 'poll_option' %>
+      </div>
+      <div class="poll_option">
+	<%= f.radio_button(:choice, :delegate,
+	    class: 'poll_option',
+	    checked: vote.choice == 'delegate',
+	    id: "vote_choice_delegate_#{bill.id}",
+	    onchange: "submit_vote(#{bill.id},'delegate');") %>
+	<%= f.label "choice_delegate_#{bill.id}", "Delegate", class: 'poll_option' %>
+      </div>
+    </div>
+    <% end %>
+  </div>
+</div>
+<% end %>
