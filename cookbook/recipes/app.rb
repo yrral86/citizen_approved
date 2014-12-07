@@ -14,6 +14,7 @@ package 'libmysqlclient-dev'
 
 # set up ruby/rvm
 execute 'gpg --keyserver hkp://keys.gnupg.net --recv-keys D39DC0E3' do
+  cwd '/opt/citizen_approved'
   user 'citizen_approved'
   not_if 'gpg --list-keys | grep D39DC0E3'
 end
