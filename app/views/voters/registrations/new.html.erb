@@ -21,6 +21,8 @@
     <%= f.password_field :password_confirmation, autocomplete: "off" %>
   </div>
 
+  <h3>Voter Information for Verification</h3>
+  <div class="legal">We will use your personal information only to verify that you are a registered voter in the district you claim.  After verification is complete, we will delete your name, address, city, state, and zip.  Your voter id will be delinked from your account, but tracked to prevent duplicate registrations.  The only information we can link to your vote are your ip address, time of access, email address, and your district.</div>
   <div class="field">
     <%= f.label "Name" %><br />
     <%= f.text_field :name %>

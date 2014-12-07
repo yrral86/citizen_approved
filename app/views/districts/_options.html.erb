@@ -10,7 +10,8 @@
     <%= label_tag "Senate" %><br />
     <%= select(:voter, :senate_district_id,
 	options_helper(District.senate_districts(state_code)),
-	include_blank: true) %>
+	{include_blank: true},
+	title: "Usually, seat 1 is the junior senator and seat 2 is the senior senator.") %>
   </div>
   <% end %>
 </span>
