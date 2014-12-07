@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  get 'legislators/home'
+
   get 'votes/upcoming'
 
   post 'votes/submit'
