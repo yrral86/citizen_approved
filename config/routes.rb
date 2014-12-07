@@ -1,6 +1,8 @@
 Rails.application.routes.draw do
   get 'landing/index'
 
+  get 'legislators/home'
+
   get 'votes/upcoming'
 
   post 'votes/submit'

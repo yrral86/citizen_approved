@@ -23,7 +23,7 @@ districts = ['AL-7',
              'AR-4',
              'CA-53',
              'CO-7',
-             'CT-4',
+             'CT-5',
              'DE-1',
              'FL-27',
              'GA-14',
@@ -88,6 +88,8 @@ districts.each do |d|
   reps = leg.select do |l|
     l[2] == "rep"
   end
+
+  puts "Warning: #{state}: specified: #{dnum}, actual: #{reps.size}" if reps.size != dnum.to_i
 
   if senators and senators.size > 0
     i = 1
