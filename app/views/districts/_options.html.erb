@@ -1,7 +1,16 @@
 <span id="district_options">
   <div class="field">
-    <%= label_tag "House District" %><br />
+    <%= label_tag "House" %><br />
     <%= select(:voter, :house_district_id,
-	options_helper(District.house_districts(state_code))) %>
+	options_helper(District.house_districts(state_code)),
+	include_blank: true) %>
   </div>
+  <% if legislator %>
+  <div class="field">
+    <%= label_tag "Senate" %><br />
+    <%= select(:voter, :senate_district_id,
+	options_helper(District.senate_districts(state_code)),
+	include_blank: true) %>
+  </div>
+  <% end %>
 </span>

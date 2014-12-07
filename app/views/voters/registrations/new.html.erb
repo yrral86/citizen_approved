@@ -1,4 +1,4 @@
-<h2>Sign up</h2>
+<h2>Become a Verified Voter</h2>
 
 <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
   <%= devise_error_messages! %>
@@ -44,7 +44,8 @@
 
   <div class="field">
     <%= f.label "State" %><br />
-    <%= f.select(:state_code, options_for_select(states_helper), {include_blank: true}, {onchange: 'update_district_options();'}) %>
+    <%= f.select(:state_code, options_for_select(states_helper), {include_blank: true},
+	{id: 'state_code', onchange: 'update_district_options();'}) %>
   </div>
 
   <div class="field">
@@ -52,7 +53,7 @@
     <%= f.text_field :zip %>
   </div>
 
-  <%= render partial: 'districts/options', locals: {state_code: nil} %>
+  <%= render partial: 'districts/options', locals: {state_code: nil, legislator: false} %>
 
   <div class="actions">
     <%= f.submit "Sign up" %>
