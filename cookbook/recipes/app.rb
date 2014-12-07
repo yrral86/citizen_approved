@@ -18,8 +18,8 @@ execute 'gpg --keyserver hkp://keys.gnupg.net --recv-keys D39DC0E3' do
   environment 'HOME' => '/opt/citizen_approved'
   cwd '/opt/citizen_approved'
   user 'citizen_approved'
-  not_if 'gpg --list-keys | grep D39DC0E3'
 end
+
 node.set['rvm']['installs'] = {
   'citizen_approved' => {
     'install_rubies' => true,
@@ -53,15 +53,6 @@ deploy 'citizen_approved' do
       user 'citizen_approved'
     end
 
-    unless mysql_master['citizen_approved']['db']['seeded'] == true
-      execute "bundle exec rake db:migrate && bundle exec rake db:seed" do
-        cwd release_path
-        user 'citizen_approved'
-      end
-      mysql_master.set_unless['citizen_approved']['db']['seeded'] = true
-      mysql_master.save
-    end
-
     template 'database.yml' do
       path "#{release_path}/config/database.yml"
       owner 'citizen_approved'
@@ -74,6 +65,15 @@ deploy 'citizen_approved' do
         :db_username => 'citizen_approved',
         :db_password => mysql_master['citizen_approved']['db']['password'] 
       })
+    end
+
+    unless mysql_master['citizen_approved']['db']['seeded'] == true
+      execute "bundle exec rake db:migrate && bundle exec rake db:seed" do
+        cwd release_path
+        user 'citizen_approved'
+      end
+      mysql_master.set_unless['citizen_approved']['db']['seeded'] = true
+      mysql_master.save
     end
 
   end
