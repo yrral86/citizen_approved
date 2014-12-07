@@ -47,7 +47,7 @@ deploy 'citizen_approved' do
       notifies :run, 'execute[bundle install]', :immediately
     end
 
-   rvm_shell "Bundle install and assets precompile" do
+   rvm_shell "bundle install" do
      ruby_string node['citizen_approved']['app']['ruby_version']
      cwd release_path
      user 'citizen_approved'
@@ -73,10 +73,16 @@ deploy 'citizen_approved' do
     end
 
     unless mysql_master['citizen_approved']['db']['seeded'] == true
-      execute "bundle exec rake db:migrate && bundle exec rake db:seed" do
-        cwd release_path
-        user 'citizen_approved'
-      end
+     rvm_shell "migrate and seed db" do
+       ruby_string node['citizen_approved']['app']['ruby_version']
+       cwd release_path
+       user 'citizen_approved'
+       group 'citizen_approved'
+ 
+       code %{
+         bundle exec rake db:migrate && bundle exec rake db:seed
+       }
+     end 
       mysql_master.set_unless['citizen_approved']['db']['seeded'] = true
       mysql_master.save
     end
