@@ -77,7 +77,7 @@ deploy 'citizen_approved' do
     end
 
   end
-  migration_command "RACK_ENV=#{node.chef_environment} bundle exec rake db:migrate"
+  migration_command "export RACK_ENV=#{node.chef_environment}; bundle exec rake db:migrate"
   migrate true
   restart_command do 
     execute "touch #{release_path}/restart.txt"
