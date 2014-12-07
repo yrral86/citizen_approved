@@ -22,7 +22,7 @@ end
 node.set['rvm']['installs'] = {
   'citizen_approved' => {
     'install_rubies' => true,
-    'default_ruby' => '2.0.0',
+    'default_ruby' => '1.9.3-p547',
     'rubies' => ['1.9.3-p547', '2.0.0']
   }
 }
