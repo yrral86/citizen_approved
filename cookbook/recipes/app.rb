@@ -8,12 +8,8 @@ user 'citizen_approved' do
 end
 
 # dependencies
-include_recipe 'build-essential'
 package 'git'
 package 'libmysqlclient-dev'
-
-# for development only
-package 'libsqlite3-dev' if node.chef_environment == 'development'
 
 # set up ruby/rvm
 ### this is not working anyway for some reason
@@ -48,7 +44,7 @@ deploy 'citizen_approved' do
       user 'citizen_approved'
     end
 
-    if mysql_master['citizen_approved']['db']['seeded'] == false
+    unless mysql_master['citizen_approved']['db']['seeded'] == true
       execute "bundle exec rake db:schema:load" do
         cwd release_path
         user 'citizen_approved'
@@ -57,8 +53,8 @@ deploy 'citizen_approved' do
       mysql_master.save
     end
 
-    template 'config.yml' do
-      path "#{release_path}/db/config.yml"
+    template 'database.yml' do
+      path "#{release_path}/config/database.yml"
       owner 'citizen_approved'
       group 'citizen_approved'
       variables({

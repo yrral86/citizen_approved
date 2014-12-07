@@ -28,23 +28,11 @@
 
   <div class="field">
     <%= f.label "State" %><br />
-    <%= select_tag(:state_code, options_for_select(states_helper), onchange: 'update_district_options();', include_blank: true) %>
+    <%= select_tag(:state_code, options_for_select(states_helper),
+	onchange: 'update_district_options();', include_blank: true) %>
   </div>
 
-  <div class="field">
-    <%= f.label "Voter Identification Number" %><br />
-    <%= f.text_field :voter_id %>
-  </div>
-
-  <div class="field">
-    <%= f.label "Senate District" %><br />
-    <%= select(resource, :senate_district_id, options_helper(District.senate_districts)) %>
-  </div>
-
-  <div class="field">
-    <%= f.label "House District" %><br />
-    <%= select(resource, :house_district_id, options_helper(District.house_districts)) %>
-  </div>
+  <%= render partial: 'districts/options', locals: {state_code: nil} %>
 
   <div class="actions">
     <%= f.submit "Sign up" %>
