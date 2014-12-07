@@ -39,7 +39,7 @@ deploy 'citizen_approved' do
   revision node['citizen_approved']['app']['revision']
   deploy_to '/opt/citizen_approved'
   user 'citizen_approved'
-  environment "RACK_ENV" => node.chef_environment
+  environment "RAILS_ENV" => node.chef_environment
   before_migrate do
     execute "cp -a /opt/citizen_approved/current/vendor ." do
       cwd release_path
@@ -77,7 +77,7 @@ deploy 'citizen_approved' do
     end
 
   end
-  migration_command "export RACK_ENV=#{node.chef_environment}; bundle exec rake db:migrate"
+  migration_command "export RAILS_ENV=#{node.chef_environment}; bundle exec rake db:migrate"
   migrate true
   restart_command do 
     execute "touch #{release_path}/restart.txt"
