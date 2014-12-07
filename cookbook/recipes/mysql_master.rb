@@ -22,3 +22,5 @@ mysql_database_user 'citizen_approved' do
   privileges [:all]
   action :grant
 end
+
+node.save
