@@ -14,8 +14,9 @@ puts "total legislators: #{yaml.size}"
 
 legislators = []
 yaml.each do |l|
-  legislators << [l['name']['official_full'], l['terms'][0]['state'], l['terms'][0]['type'],
-                  l['terms'][0]['district'], l['terms'][0]['state_rank']]
+  legislators << [l['name']['official_full'], l['terms'][-1]['state'],
+                  l['terms'][-1]['type'],
+                  l['terms'][-1]['district'], l['terms'][-1]['state_rank']]
 end
 
 districts = ['AL-7',
