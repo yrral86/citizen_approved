@@ -12,15 +12,14 @@ package 'git'
 package 'libmysqlclient-dev'
 
 # set up ruby/rvm
-### this is not working anyway for some reason
-#node.set['rvm']['installs'] = {
-#  'citizen_approved' => {
-#    'install_rubies' => true,
-#    'default_ruby' => '2.0.0',
-#    'rubies' => ['1.9.3-p547', '2.0.0']
-#  }
-#}
-#include_recipe 'rvm::user'
+node.set['rvm']['installs'] = {
+  'citizen_approved' => {
+    'install_rubies' => true,
+    'default_ruby' => '2.0.0',
+    'rubies' => ['1.9.3-p547', '2.0.0']
+  }
+}
+include_recipe 'rvm::user'
 
 include_recipe 'nginx'
 include_recipe 'nginx::passenger'
