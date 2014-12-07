@@ -36,6 +36,8 @@ gem 'devise'
 
 gem 'addressable', require: 'addressable/uri'
 
+gem 'activerecord-session_store'
+
 group :development, :test do
   # Call 'debugger' anywhere in the code to stop execution and get a debugger console
   gem 'debugger'
