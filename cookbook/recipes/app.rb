@@ -79,7 +79,7 @@ deploy 'citizen_approved' do
         user 'citizen_approved'
         group 'citizen_approved'
         code %{
-          bundle exec rake db:migrate && bundle exec rake db:seed && touch db.seeded
+          export RAILS_ENV=#{node.chef_environment}; bundle exec rake db:migrate && bundle exec rake db:seed && touch db.seeded
         }
       end 
      mysql_master.set_unless['citizen_approved']['db']['seeded'] = true
