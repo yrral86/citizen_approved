@@ -49,7 +49,7 @@ deploy 'citizen_approved' do
      group 'citizen_approved'
  
      code %{
-       bundle install --path vendor/bundle
+       /opt/citizen_approved/.rvm/gems/ruby-#{node['citizen_approved']['app']['ruby_version']}@global/bin/bundle install
      }
    end 
 
