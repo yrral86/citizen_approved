@@ -113,3 +113,64 @@ end
 
 Congress.create(number:113, session:2, dstart: '2014-01-03', dend: '2015-01-03', current:true)
 Congress.create(number:113, session:1, dstart: '2013-01-03', dend: '2013-12-26', current:false)
+require 'bills/get_current'
+require 'congress/get_data'
+
+d = District.all
+b = Bill.all
+
+c1 = []
+c2 = []
+
+(1..b.size).each do |i|
+  c1 << rand()
+  c2 << rand()
+
+  if c2[i-1] < c1[i-1]
+    a = c2[i-1]
+    c2[i-1] = c1[i-1]
+    c1[i-1] = a
+  end
+end
+
+1000.times do |i|
+  v = Voter.create(name: "voter#{i}", email: "voter#{i}@yrral86.koding.io",
+                   password: 'pass', voter_id: '12345', address: '123 main',
+                   city: 'Frostburg', state_code: 'MD', zip: '21532',
+                   house_district_id: d[0].id)
+  b_count = 0
+  b.each do |bill|
+    r = rand()
+    c = if r < c1[b_count]
+          :for
+        elsif r < c2[b_count]
+          :against
+        else
+          :delegate
+        end
+      Vote.create(voter_id: v.id, bill_id: bill.id, choice: c)
+      b_count += 1
+  end
+end
+
+10000.times do |i|
+  v = Voter.create(name: "voter#{i}", email: "voter#{i}@yrral86.koding.io",
+                   password: 'pass', voter_id: '12345', address: '123 main',
+                   city: 'Frostburg', state_code: 'MD', zip: '21532',
+                   house_district_id: d[rand(d.size - 1) + 1].id)
+  b_count = 00
+  b.each do |bill|
+    r = rand()
+    c = if r < c1[b_count]
+          :for
+        elsif r < c2[b_count]
+          :against
+        else
+          :delegate
+        end
+      Vote.create(voter_id: v.id, bill_id: bill.id, choice: c)
+      b_count += 1
+  end
+end
+
+Legislator.create(house_district_id: d[0].id, email: 'demo@opencongress.org', password: 'password', state_code: 'MD')
