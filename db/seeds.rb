@@ -154,7 +154,7 @@ end
 end
 
 10000.times do |i|
-  v = Voter.create!(name: "voter#{i}", email: "voter#{i}@yrral86.koding.io",
+  v = Voter.create!(name: "voter1-#{i}", email: "voter#{i}@yrral86.koding.io",
                    password: 'password', voter_id: '12345', address: '123 main',
                    city: 'Frostburg', state_code: 'MD', zip: '21532',
                    house_district_id: d[rand(d.size - 1) + 1].id)
