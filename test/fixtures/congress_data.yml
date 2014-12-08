@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  congress: 1
+  proposed: 1
+  enacted: 1
+
+two:
+  congress: 1
+  proposed: 1
+  enacted: 1

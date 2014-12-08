@@ -23,7 +23,7 @@ districts = ['AL-7',
              'AR-4',
              'CA-53',
              'CO-7',
-             'CT-4',
+             'CT-5',
              'DE-1',
              'FL-27',
              'GA-14',
@@ -89,6 +89,8 @@ districts.each do |d|
     l[2] == "rep"
   end
 
+  puts "Warning: #{state}: specified: #{dnum}, actual: #{reps.size}" if reps.size != dnum.to_i
+
   if senators and senators.size > 0
     i = 1
     i = 2 if senators[0][4] == 'senior'
@@ -108,3 +110,6 @@ districts.each do |d|
                     number: r[3], name: r[0])
   end
 end
+
+Congress.create(number:113, session:2, dstart: '2014-01-03', dend: '2015-01-03', current:true)
+Congress.create(number:113, session:1, dstart: '2013-01-03', dend: '2013-12-26', current:false)

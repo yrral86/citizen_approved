@@ -1,0 +1,37 @@
+<h2>Claim Your District</h2>
+
+<%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
+  <%= devise_error_messages! %>
+
+  <div class="field">
+    <%= f.label :email %><br />
+    <%= f.email_field :email, autofocus: true, title: "You must use your opencongress.org email." %>
+  </div>
+
+  <div class="field">
+    <%= f.label :password %>
+    <% if @validatable %>
+    <em>(<%= @minimum_password_length %> characters minimum)</em>
+    <% end %><br />
+    <%= f.password_field :password, autocomplete: "off" %>
+  </div>
+
+  <div class="field">
+    <%= f.label :password_confirmation %><br />
+    <%= f.password_field :password_confirmation, autocomplete: "off" %>
+  </div>
+
+  <div class="field">
+    <%= f.label "State" %><br />
+    <%= f.select(:state_code, options_for_select(states_helper), {include_blank: true},
+	{id: 'state_code', onchange: 'update_district_options();'}) %>
+  </div>
+
+  <%= render partial: 'districts/options', locals: {state_code: nil, legislator:true} %>
+
+  <div class="actions">
+    <%= f.submit "Sign up" %>
+  </div>
+<% end %>
+
+<%= render "devise/shared/links" %>

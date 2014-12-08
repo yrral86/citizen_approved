@@ -15,22 +15,78 @@
  */
 
 div.content {
-    width: 80%;
-    margin: 0 auto;
+    width: 70%;
 }
 
-header {
+#login {
     float: right;
-    margin: 50px;
+    margin: 15px;
     padding: 20px;
     background-color: lightblue;
     border-radius: 10px;
 }
 
-header a {
+#login a {
     margin: 10px;
+}
+
+#banner {
+  background-color: #bbf;
+  a {
+    padding: 10px;
+    text-decoration: none;
+  }
+}
+
+a {
+  padding: 10px;
+  text-decoration: none;
 }
 
 div.field {
     margin: 10px;
+}
+
+body {
+  background-color: #eee;
+  width: 960px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.saying {
+  font-style: italic;
+  text-align: center;
+  b {
+    font-size: 150%;
+  }
+}
+
+p a {
+  padding: 0;
+}
+
+p.footer {
+  color: white;
+  text-align: center;
+  font-size: smaller;
+  font-style: italic;
+  background-color: #88f;
+}
+
+.sidebar {
+  width: 25%;
+  float: right;
+  margin-right: 0px;
+  font-family: verdana;
+  background-color: #afa;
+}
+
+.sidebar dl {
+  margin-left: 5px;
+}
+
+.content {
+  width: 70%;
+  margin-left: 10px;
 }

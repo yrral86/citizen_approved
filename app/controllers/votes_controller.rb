@@ -2,8 +2,7 @@ class VotesController < ApplicationController
   before_filter :authenticate_voter!
 
   def upcoming
-    # TODO: restrict based on time
-    bills = Bill.all
+    bills = Bill.current
     bill_ids = bills.map {|b| b.id}
     votes = Vote.where(bill_id: bill_ids, voter_id: current_voter.id)
     @voteless = []

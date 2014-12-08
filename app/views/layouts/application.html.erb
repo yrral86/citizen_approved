@@ -1,23 +1,44 @@
 <!DOCTYPE html>
 <html>
-<head>
-  <title>CitizenApproved</title>
-  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
-  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
-  <%= csrf_meta_tags %>
-</head>
+  <head>
+    <title>Citizen Approved</title>
+    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
+    <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+    <%= csrf_meta_tags %>
+  </head>
 <body>
-<header>
-  <% if voter_signed_in? %>
-  <%= link_to 'Logout', destroy_voter_session_path, method: :delete %>
-  <% else %>
-  <%= link_to 'Login', new_voter_session_path %>
-  <%= link_to 'Sign Up', new_voter_registration_path %>
-  <% end %>
-</header>
-<div class="content">
-<%= yield %>
-</div>
-
+  <header>
+    <div id="login">
+      <% if voter_signed_in? %>
+      <%= link_to 'Logout', destroy_voter_session_path, method: :delete %>
+      <% else %>
+      <%= link_to 'Login', new_voter_session_path %>
+      <%= link_to 'Sign Up', new_voter_registration_path %>
+      <% end %>
+    </div>
+    <%= link_to image_tag("citizen.black.png", alt: "Citizen Approved", size: "400x100"), root_path %>
+  </header>
+  <nav id="banner">
+    <%= link_to  "govtrack.us", "www.govtrack.us" %>
+    <%= link_to  "Library of Congress", "loc.gov" %>
+  </nav>
+  <div class="sidebar">
+    <dl>
+      <dt><b>Congress:</b> <%= @congress.number %></dt>
+      <dt><b>Session:</b> <%= @congress.session %></dt>
+      <dt><b>Start Date:</b> <%= @congress.dstart.to_s(:long) %></dt>
+      <dt><b>End Date:</b> <%= @congress.dend.to_s(:long) %></dt>
+    </dl>
+    <dl>
+      <dt><b>Bills Proposed:</b> <%= @cdata.proposed %></dt>
+      <dt><b>Bills Enacted:</b> <%= @cdata.enacted %></dt>
+    </dl>
+  </div>
+  <div class="content">
+  <%= yield %>
+  </div>
+  <footer>
+    <p class="footer">Citizen Approved: Americans taking back their country.</p>
+  </footer>
 </body>
 </html>
