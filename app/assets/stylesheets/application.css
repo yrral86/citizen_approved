@@ -15,8 +15,7 @@
  */
 
 div.content {
-    width: 80%;
-    margin: 0 auto;
+    width: 70%;
 }
 
 #login {
@@ -73,4 +72,21 @@ p.footer {
   font-size: smaller;
   font-style: italic;
   background-color: #88f;
+}
+
+.sidebar {
+  width: 25%;
+  float: right;
+  margin-right: 0px;
+  font-family: verdana;
+  background-color: #afa;
+}
+
+.sidebar dl {
+  margin-left: 5px;
+}
+
+.content {
+  width: 70%;
+  margin-left: 10px;
 }

@@ -1,0 +1,17 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  number: 1
+  session: 1
+  sstart: MyString
+  date: MyString
+  send: 2014-12-07
+  current: false
+
+two:
+  number: 1
+  session: 1
+  sstart: MyString
+  date: MyString
+  send: 2014-12-07
+  current: false

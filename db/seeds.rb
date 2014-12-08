@@ -108,3 +108,6 @@ districts.each do |d|
                     number: r[3], name: r[0])
   end
 end
+
+Congress.create(number:113, session:2, dstart: '2014-01-03', dend: '2015-01-03', current:true)
+Congress.create(number:113, session:1, dstart: '2013-01-03', dend: '2013-12-26', current:false)
