@@ -98,6 +98,9 @@ deploy 'citizen_approved' do
   restart_command do 
     execute "touch #{release_path}/tmp/restart.txt"
   end
+  before_restart do
+    execute "mkdir #{release_path}/tmp"
+  end
   symlinks({})
   symlink_before_migrate({})
   create_dirs_before_symlink([])
