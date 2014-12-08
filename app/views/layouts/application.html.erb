@@ -9,14 +9,23 @@
 <body>
   <header>
     <div id="login">
+      Voters<br />
       <% if voter_signed_in? %>
       <%= link_to 'Logout', destroy_voter_session_path, method: :delete %>
       <% else %>
       <%= link_to 'Login', new_voter_session_path %>
       <%= link_to 'Sign Up', new_voter_registration_path %>
+      <% end %><br />
+      Legislators<br />
+      <% if legislator_signed_in? %>
+      <%= link_to 'Logout', destroy_legislator_session_path, method: :delete %>
+      <% else %>
+      <%= link_to 'Login', new_legislator_session_path %>
+      <%= link_to 'Sign Up', new_legislator_registration_path %>
       <% end %>
     </div>
     <%= link_to image_tag("citizen.black.png", alt: "Citizen Approved", size: "400x100"), root_path %>
+    <div style="clear:both"></div>
   </header>
   <nav id="banner">
     <%= link_to  "govtrack.us", "www.govtrack.us" %>
@@ -24,6 +33,9 @@
     <%= link_to "Current Bills", bill_current_path %>
     <% if voter_signed_in? %>
       <%= link_to "Upcoming Votes", votes_upcoming_path %>
+    <% end %>
+    <% if legislator_signed_in? %>
+      <%= link_to "Upcoming Votes", legislators_home_path %>
     <% end %>
   </nav>
   <div class="sidebar">
