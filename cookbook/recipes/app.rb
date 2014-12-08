@@ -36,9 +36,10 @@ end
 
 #set up nginx/passenger
 #node.set['nginx']['passenger']['gem_binary'] = '/opt/citizen_approved/.rvm/gems/ruby-#{['citizen_approved']['app']['ruby_version']}@global/bin/gem'
+node.set['nginx']['install_method'] = 'source'
 node.set['nginx']['default_site_enabled'] = false
-include_recipe 'nginx'
 include_recipe 'nginx::passenger'
+include_recipe 'nginx'
 
 #deploy citizen_approved
 deploy 'citizen_approved' do
