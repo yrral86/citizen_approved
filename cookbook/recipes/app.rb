@@ -96,7 +96,7 @@ deploy 'citizen_approved' do
   migration_command "export RAILS_ENV=#{node.chef_environment}; /opt/citizen_approved/.rvm/gems/ruby-#{node['citizen_approved']['app']['ruby_version']}@global/bin/bundle exec rake db:migrate"
   migrate false
   restart_command do 
-    execute "touch #{release_path}/restart.txt"
+    execute "touch #{release_path}/tmp/restart.txt"
   end
   symlinks({})
   symlink_before_migrate({})
@@ -105,3 +105,14 @@ deploy 'citizen_approved' do
   action :deploy
 end
 
+template '/etc/nginx/sites-available/citizen_enabled' do
+  source 'citizen_approved.site.erb'  
+  variables({
+    :server_name => node.name,
+    :docroot => '/opt/citizen_enabled/current/public'
+  })
+  notifies :run, 'execute[nxensite citizen_enabled]', :immediately
+  notifies :restart, 'service[nginx]', :immediately
+end
+
+execute 'nxensite citizen_enabled'
