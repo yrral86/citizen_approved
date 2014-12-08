@@ -21,6 +21,9 @@
   <nav id="banner">
     <%= link_to  "govtrack.us", "www.govtrack.us" %>
     <%= link_to  "Library of Congress", "loc.gov" %>
+    <% if voter_signed_in? %>
+      <%= link_to "Upcoming Votes", votes_upcoming_path %>
+    <% end %>
   </nav>
   <div class="sidebar">
     <dl>
