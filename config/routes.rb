@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  get 'bill/current'
+
   get 'landing/index'
 
   get 'legislators/home'
