@@ -12,9 +12,10 @@
     <% @bills.each do |b| %>
       <tr>
         <td><%= b.title %></td>
-        <td class="number"><%= b.votes.where("choice = ?", "yes").size %></td>
-        <td class="number"><%= b.votes.where("choice = ?", "no").size %></td>
-        <td class="number"><%= b.votes.where("choice = ?", "delegate").size %></td>
+	<% v = Voter.all %>
+        <td class="number"><%= b.vote_count(v, :for).size %></td>
+        <td class="number"><%= b.vote_count(v, :against).size %></td>
+        <td class="number"><%= b.vote_count(v, :delegate).size %></td>
       </tr>
     <% end %>
   </tbody>
