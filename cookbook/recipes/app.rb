@@ -29,6 +29,11 @@ node.set['rvm']['installs'] = {
 }
 include_recipe 'rvm::user'
 
+#apache breaks nginx
+service 'apache2' do
+  action [:stop, :disable]
+end
+
 #set up nginx/passenger
 #node.set['nginx']['passenger']['gem_binary'] = '/opt/citizen_approved/.rvm/gems/ruby-#{['citizen_approved']['app']['ruby_version']}@global/bin/gem'
 include_recipe 'nginx'
