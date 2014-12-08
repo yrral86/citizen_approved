@@ -59,7 +59,7 @@ deploy 'citizen_approved' do
       group 'citizen_approved'
       variables({
         :env => node.chef_environment,
-        :db_adapter => 	'mysql',
+        :db_adapter => 	'mysql2',
         :db_host => mysql_master.ipaddress,
         :db_database => 'citizen_approved',
         :db_username => 'citizen_approved',
