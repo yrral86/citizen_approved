@@ -13,6 +13,10 @@ The American people aren't grid locked. The American people aren't interested in
 
 By enabling real time communication between the citizenry of the nation and their elected representatives, we will have the tools to hold them more accountable, but it is still up to us to participate.
 
+At this time, you may sign up as a voter with fake data and any email you wish (no mails will be sent).
+
+There is also a test legislator account available with email 'demo@opencongress.org' and password 'password'.
+
 APIs
 ====
 https://www.govtrack.us
