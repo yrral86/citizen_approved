@@ -31,7 +31,6 @@ include_recipe 'rvm::user'
 
 #apache breaks nginx
 service 'apache2' do
-  provider Chef::Provider::Service::Upstart
   action [:stop, :disable]
 end
 
