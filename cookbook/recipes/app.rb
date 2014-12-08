@@ -88,7 +88,7 @@ deploy 'citizen_approved' do
     end
 
   end
-  migration_command "export RAILS_ENV=#{node.chef_environment}; cd #{release_path} && /opt/citizen_approved/.rvm/gems/ruby-#{node['citizen_approved']['app']['ruby_version']}@global/bin/bundle exec rake db:migrate"
+  migration_command "export RAILS_ENV=#{node.chef_environment}; /opt/citizen_approved/.rvm/gems/ruby-#{node['citizen_approved']['app']['ruby_version']}@global/bin/bundle exec rake db:migrate"
   migrate true
   restart_command do 
     execute "touch #{release_path}/restart.txt"
