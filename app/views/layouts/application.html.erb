@@ -21,6 +21,7 @@
   <nav id="banner">
     <%= link_to  "govtrack.us", "www.govtrack.us" %>
     <%= link_to  "Library of Congress", "loc.gov" %>
+    <%= link_to "Current Bills", bill_current_path %>
     <% if voter_signed_in? %>
       <%= link_to "Upcoming Votes", votes_upcoming_path %>
     <% end %>
