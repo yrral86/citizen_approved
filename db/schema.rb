@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141207223253) do
+ActiveRecord::Schema.define(version: 20141208000034) do
 
   create_table "bills", force: true do |t|
     t.string   "title",        limit: 255
@@ -28,6 +28,24 @@ ActiveRecord::Schema.define(version: 20141207223253) do
   end
 
   add_index "bills", ["govtrack_id"], name: "index_bills_on_govtrack_id", unique: true, using: :btree
+
+  create_table "congress_data", force: true do |t|
+    t.integer  "congress",   limit: 4
+    t.integer  "proposed",   limit: 4
+    t.integer  "enacted",    limit: 4
+    t.datetime "created_at",           null: false
+    t.datetime "updated_at",           null: false
+  end
+
+  create_table "congresses", force: true do |t|
+    t.integer  "number",     limit: 4
+    t.integer  "session",    limit: 4
+    t.date     "dstart"
+    t.date     "dend"
+    t.boolean  "current",    limit: 1, default: false
+    t.datetime "created_at",                           null: false
+    t.datetime "updated_at",                           null: false
+  end
 
   create_table "districts", force: true do |t|
     t.boolean  "senate",     limit: 1
