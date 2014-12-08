@@ -1,0 +1,22 @@
+<h1>Current Bill Sentiment</h1>
+<table>
+  <theading>
+    <tr>
+      <th>Bill</th>
+      <th>For</th>
+      <th>Against</th>
+      <th>Delegate</th>
+    </tr>
+  </theading>
+  <tbody>
+    <% @bills.each do |b| %>
+      <tr>
+        <td><%= b.title %></td>
+	<% v = Voter.all %>
+        <td class="number"><%= b.vote_count(v, :for) %></td>
+        <td class="number"><%= b.vote_count(v, :against) %></td>
+        <td class="number"><%= b.vote_count(v, :delegate) %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

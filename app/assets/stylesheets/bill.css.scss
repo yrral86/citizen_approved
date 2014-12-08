@@ -1,0 +1,22 @@
+// Place all the styles related to the Bill controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+table {
+  border: 1px solid black;
+  th {
+    color: white;
+    background-color: black;
+    padding: 5px;
+    border: 1px solid black;
+  }
+
+  td {
+    padding: 5px;
+    border-bottom: 1px solid black;
+  }
+}
+
+.number {
+  text-align: center;
+}
