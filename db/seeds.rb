@@ -134,8 +134,8 @@ c2 = []
 end
 
 1000.times do |i|
-  v = Voter.create(name: "voter#{i}", email: "voter#{i}@yrral86.koding.io",
-                   password: 'pass', voter_id: '12345', address: '123 main',
+  v = Voter.create!(name: "voter#{i}", email: "voter#{i}@yrral86.koding.io",
+                   password: 'password', voter_id: '12345', address: '123 main',
                    city: 'Frostburg', state_code: 'MD', zip: '21532',
                    house_district_id: d[0].id)
   b_count = 0
@@ -148,14 +148,14 @@ end
         else
           :delegate
         end
-      Vote.create(voter_id: v.id, bill_id: bill.id, choice: c)
+      Vote.create!(voter_id: v.id, bill_id: bill.id, choice: c)
       b_count += 1
   end
 end
 
 10000.times do |i|
-  v = Voter.create(name: "voter#{i}", email: "voter#{i}@yrral86.koding.io",
-                   password: 'pass', voter_id: '12345', address: '123 main',
+  v = Voter.create!(name: "voter#{i}", email: "voter#{i}@yrral86.koding.io",
+                   password: 'password', voter_id: '12345', address: '123 main',
                    city: 'Frostburg', state_code: 'MD', zip: '21532',
                    house_district_id: d[rand(d.size - 1) + 1].id)
   b_count = 00
